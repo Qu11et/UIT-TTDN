@@ -53,31 +53,32 @@ The system uses Jenkins's agents to ensure: build, test, and deployment tasks
 ```mermaid
 flowchart LR
  subgraph ci["CI"]
-        pr{"Pull request created"}
+        pr["Pull request created"]
         validate["Validate Branch Name"]
         checkout["Checkout"]
         build["Build Image"]
-        test["Run tests"]    
+        test["Run tests"]
+        
   end
  subgraph cd["CD"]
     direction LR
         push["Push to Image Registry"] 
-        pra{"wait for PR to be accepted"}
+        pra["PR is accepted"]
         deployDev["Deploy to Development"]
         deployProd["Deploy to Production"]
         postAct["Update deployment status onto PR via GitHub Status API"]
         
   end
-    start["Start"] --> pr --> validate
+    start(("Start")) --> pr --> validate
     validate --> checkout
     checkout --> test
     test --> build
     build --> push
     push --> pra --> deployDev
-    push --> pra --> deployProd
+    pra --> deployProd
     deployDev --> postAct
     deployProd --> postAct
-    postAct --> endi["End"]
+    postAct --> endi(("End"))
 ```
 ### 3.2. Main Components
 
