@@ -45,23 +45,17 @@ Project Infrastructure as Code with Terraform is implemented to achieve knowledg
 #### Architecture Diagram:
 ```mermaid
 flowchart LR
-        dev["Dev push new infrastructure update to feature branch"]
-        pr{"Pull request created"}
-        checkout["Checkout"]
-        fmt["Format"]
-        test["Run Checkov scan"]
-        init["Init"] 
-        plan{"Plan"}
-        apply["Apply"]
-        pra{"Wait for PR to be accepted"}
-        infra["Infrastructure created"]
-        
-    dev --> pr --> start["Start"] 
-    start["Start"]  --> checkout
-    checkout --> test
-    test --> fmt
-    fmt --> init
-    init --> plan --> pra --> apply --> infra --> ending["End"]
+    start(("Start")) --> dev["Dev push new infrastructure update to feature branch"]
+    dev --> pr["Pull request created"]
+    pr --> checkout["Checkout"]
+    checkout --> test["Run Checkov scan"]
+    test --> fmt["Format"]
+    fmt --> init["Init"]
+    init --> plan["Plan"]
+    plan --> pra["PR is accepted"]
+    pra --> apply["Apply"]
+    apply --> infra["Infrastructure created"]
+    infra --> ending(("End"))
 ```
 
 ### 3.2. Main Components
