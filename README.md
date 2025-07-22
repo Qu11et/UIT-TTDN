@@ -26,13 +26,6 @@ This is my DevOps internship program at YOONG Solutions. This program includes p
 - **1.2**: CD Pipeline
   - Deployment Configuration
   - Automated Deployment
-### 2. [CI/CD with Jenkins](project-02/README.md)
-- **2.1**: Basic CI Pipeline
-  - Jenkins Setup
-  - Build and Test
-- **2.2**: CD Pipeline
-  - Deployment Configuration
-  - Automated Deployment
 
 ### 3. [Infrastructure as Code with Terraform](project-03/README.md)
 - **3.1**: Terraform Basics
